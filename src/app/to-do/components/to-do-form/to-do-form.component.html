@@ -1,0 +1,30 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Agregar Tarea</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="todoForm" (ngSubmit)="submit()">
+      
+      <ion-item>
+        <ion-label position="floating">Título</ion-label>
+        <ion-input formControlName="title"></ion-input>
+      </ion-item>
+      <div *ngIf="todoForm.controls['title'].invalid && todoForm.controls['title'].touched">
+        <p class="error">El título es obligatorio (mín. 3 caracteres).</p>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-datetime formControlName="date"></ion-datetime>
+      </ion-item>
+
+      <app-custom-button type="submit" [disabled]="todoForm.invalid" text="Guardar Tarea"/>
+    </form>
+    
+  </ion-card-content>
+</ion-card>
